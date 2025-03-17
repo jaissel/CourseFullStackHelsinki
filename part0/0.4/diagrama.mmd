@@ -1,0 +1,20 @@
+sequenceDiagram
+    participant User
+    participant Browser
+    participant Server
+
+    User->>Browser: Escribe una nota y hace clic en "Save"
+    Browser->>Server: POST https://studies.cs.helsinki.fi/exampleapp/new_note { "content": "Nueva nota", "date": "2025-03-17" }
+    activate Server
+    Server-->>Browser: Respuesta 201 Created
+    deactivate Server
+
+    Note right of Server: La nueva nota se almacena en el servidor
+
+    Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate Server
+    Server-->>Browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ..., { "content": "Nueva nota", "date": "2025-03-17" }]
+    deactivate Server
+
+    Note right of Browser: El navegador actualiza la lista de notas y muestra la nueva nota en la página
+    %%AUTHOR: Jaissel Perez
