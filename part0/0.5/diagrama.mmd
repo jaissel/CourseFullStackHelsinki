@@ -1,0 +1,31 @@
+sequenceDiagram
+    participant User
+    participant Browser
+    participant Server
+
+    User->>Browser: Ingresa a https://studies.cs.helsinki.fi/exampleapp/spa
+    Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    activate Server
+    Server-->>Browser: HTML document
+    deactivate Server
+
+    Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/spa.css
+    activate Server
+    Server-->>Browser: CSS file
+    deactivate Server
+
+    Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    activate Server
+    Server-->>Browser: JavaScript file
+    deactivate Server
+
+    Note right of Browser: El navegador carga y ejecuta JavaScript
+
+    Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate Server
+    Server-->>Browser: [{ "content": "SPA loaded", "date": "2025-03-17" }, ... ]
+    deactivate Server
+
+    Note right of Browser: El navegador renderiza las notas sin recargar la página
+
+    %%AUTHOR: Jaissel Perez
